@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import data from "./students.json";
+import coursedata from "./courses.json";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h1>People List</h1>
+        <ul>
+          {data.map((person) => (
+            <li key={person.id}>
+              <p>Name: {person.name}</p>
+              <p>Age: {person.age}</p>
+              <p>Courses:</p>
+              <ul>
+                {person.courses.map((courseId) => (
+                  <li key={courseId}>{courseId}</li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      <div>
+        <h1> course list </h1>
+        <ul>
+          {coursedata.map((course, index) => (
+            <li key={index}>
+              <p>Cousrse Name: {course.name}</p>
+              <p>Cousrse InstructorName: {course.instructor}</p>
+              <p>{course.index}</p>
+            </li>
+          ))}
+        </ul>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
